@@ -1,44 +1,37 @@
 package io.muzoo.ssc.hw3;
 
 import io.muzoo.ssc.hw3.item.Item;
-import io.muzoo.ssc.hw3.map.Location;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
 
-    private String playerName;
     private int fullHP;
     private int currentHP;
-    private int hiddenHP;
     private int defaultAttackPower;
+    private boolean isAlive;
     private Location currentLocation_loc;
-    private String currentLocation_str;
-    private List<Item> bag = new ArrayList<>();
+    protected Map<Item, Integer> bag = new HashMap<>();
+    protected Map<String, Item> itemLst = new HashMap<>();
 
     public Player(){
-        fullHP = 500;
-        currentHP = 500;
-        hiddenHP = 50;
-        defaultAttackPower = 50;
+        this.fullHP = 500;
+        this.currentHP = 500;
+        this.defaultAttackPower = 50;
+        this.isAlive = true;
     }
 
     //about player
 
-    public String getPlayerName(){
-        return playerName;
-    }
-
     //player stats
 
     public int getFullHP(){
-        return fullHP;
+        return this.fullHP;
     }
 
     public int getCurrentHP(){
-        return currentHP;
+        return this.currentHP;
     }
 
     //func to update player's HP when he/she takes potion or walks to another room
@@ -47,40 +40,97 @@ public class Player {
 
     public void addHP(int toAddHP){
         if ((currentHP < fullHP) && ((currentHP + toAddHP) <= fullHP)){
-            currentHP += toAddHP;
+            this.currentHP += toAddHP;
         }
         else{
-            currentHP += fullHP - currentHP;
+            this.currentHP += fullHP - currentHP;
         }
+        return;
     }
 
     public int getDefaultAttackPower(){
         return defaultAttackPower;
     }
 
+    public int attackWithItem(Item item){
+        if (item.getAttackPower() == 0 && item.getAddHP() > 0){
+            addHP(item.getAddHP());
+        }
+        return defaultAttackPower + item.getAttackPower();
+    }
+
     //items related
     public void keepItem(Item item){
-        bag.add(item);
-        System.out.println(item + " is being kept to the bag");
+        System.out.println(item.toString());
+        if (!itemLst.containsKey(item.getItemName())){
+            this.bag.put(item, 1);
+            this.itemLst.put(item.getItemName(), item);
+        }
+        else{
+            this.bag.put(item, bag.get(item) + 1);
+        }
+    }
+
+    // if the value = 0 -> remove out
+    public void removeItem(Item item){
+        if (bag.get(item) == 0){
+            bag.remove(item);
+            itemLst.remove(item.getItemName());
+        }
+    }
+
+    public Map<String, Item> getItemLst() {
+        return itemLst;
+    }
+
+    public void dropItem(String itemName){
+        Item item = itemLst.get(itemName);
+        if (bag.get(item) == 0){
+            removeItem((item));
+        }
+        else{
+            bag.put(item, bag.get(item)-1);
+        }
     }
 
     public Location getCurrentLocationInLoc(){
         return currentLocation_loc;
     }
 
-    public void wasAttacked(int attackPower){
+    public void setPlayerLocation(Location newLocation){
+        this.currentLocation_loc = newLocation;
+
+    }
+
+    public int wasAttacked(int attackPower){
 
         if ((currentHP - attackPower) > 0){
-            currentHP -= attackPower;
+            currentHP = currentHP - attackPower;
         }
         else{
             currentHP = 0;
+            this.isAlive = false;
         }
 
+        return currentHP;
+
+    }
+
+    public boolean isAlive(){
+        return isAlive;
+    }
+
+    public void setAlive(boolean bool){
+        this.isAlive = bool;
+    }
+
+    public Map<Item, Integer> getPlayersItems(){
+        return bag;
     }
 
     public void useItem(Item item){
-        defaultAttackPower += item.getAttackPower();
+        this.defaultAttackPower += item.getAttackPower();
     }
+
 
 }

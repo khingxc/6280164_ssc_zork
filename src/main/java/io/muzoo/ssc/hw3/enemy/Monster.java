@@ -1,18 +1,32 @@
 package io.muzoo.ssc.hw3.enemy;
 
+import io.muzoo.ssc.hw3.Game;
+import io.muzoo.ssc.hw3.item.Item;
+import io.muzoo.ssc.hw3.Location;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Monster {
 
     protected String monsterName;
+    private boolean isAlive = true;
     protected int defaultAttackPower;
     protected int fullHP;
     protected int currentHP;
-    protected boolean alive;
+    protected Item holdItem;
+    protected Location location;
+    protected Map<String, Monster> monsterMap = new HashMap<>();
 
-    public Monster(int fullHP, int currentHP, int attackPower){
+    public Monster(Game game, int fullHP, int currentHP, int attackPower, Location location){
         this.fullHP = fullHP;
         this.currentHP = currentHP;
         this.defaultAttackPower = defaultAttackPower;
-        this.alive = true;
+        this.location = location;
+    }
+
+    public boolean isAlive(){
+        return isAlive;
     }
 
     public String getMonsterName(){
@@ -36,13 +50,17 @@ public class Monster {
         if ((currentHP - attackPower) > 0){
             currentHP = currentHP - attackPower;
         }
-        else{
+        else {
             currentHP = 0;
-            alive = false;
+            this.isAlive = false;
         }
 
         return currentHP;
 
+    }
+
+    public Location getLocation(){
+        return location;
     }
 
 }

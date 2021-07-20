@@ -1,8 +1,8 @@
 package io.muzoo.ssc.hw3.command.allCmds;
 
 import io.muzoo.ssc.hw3.Game;
+import io.muzoo.ssc.hw3.Location;
 import io.muzoo.ssc.hw3.Player;
-import io.muzoo.ssc.hw3.map.*;
 import io.muzoo.ssc.hw3.command.Command;
 
 import java.util.ArrayList;
@@ -12,12 +12,11 @@ import java.util.Map;
 public class GoCommand implements Command {
 
     private List<String> dirs;
-    private Map<String, Location> map;
     private Player player;
+    private Location currentRoom;
+    private String dir;
 
-    public GoCommand(Player player, Map<String, Location> map){
-        this.player = player;
-        this.map = map;
+    public GoCommand(){
         dirs = new ArrayList<>();
         dirs.add("north");
         dirs.add("south");
@@ -38,23 +37,39 @@ public class GoCommand implements Command {
     @Override
     public void execute(Game game, List<String> arguments) {
 
+        this.player = game.getPlayer();
+        this.currentRoom = game.getPlayerLoc();
+        this.dir = arguments.get(0);
+
         if (arguments.size() < numArgs()){
             game.getOutput().println("where do you want to go?");
         }
 
         else if (arguments.size() > numArgs()){
-            game.getOutput().println("sorry, there are too much arguments");
+            game.getOutput().println("please specify place you want to go!");
         }
 
-//        else{
-//
-//            if (!dirs.contains(arguments)){
-//                System.out.println("Direction Not Found");
-//            }
-//            else{
-//
-//            }
-//        }
+        else{
+
+            if (!(dirs.contains(dir))){
+                game.getOutput().println("The direction you are putting in does not exist");
+                game.getOutput().println("The available directions are");
+                for (String d : dirs){
+                    game.getOutput().println("* " + d);
+                }
+            }
+            else{
+                Location destination = currentRoom.nextRoom(dir, currentRoom);
+                if (destination != null){
+                    player.setPlayerLocation(destination);
+                    player.addHP(10);
+                }
+                else{
+                    game.getOutput().println("Sorry, you can't go that way :(");
+                }
+            }
+
+        }
 
     }
 }

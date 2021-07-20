@@ -1,4 +1,7 @@
-package io.muzoo.ssc.hw3.map;
+package io.muzoo.ssc.hw3;
+
+import io.muzoo.ssc.hw3.enemy.Monster;
+import io.muzoo.ssc.hw3.item.Item;
 
 import java.util.HashMap;
 
@@ -7,6 +10,9 @@ public class Location {
     //references from ZUUL project from third assignment from Data Structures class
 
     private final String description; //create variable called description (of each room) which cannot be override since it is 'final'
+    protected Monster monster;
+    protected Item item;
+    private boolean getToExit = false;
 
     public Location(String description){
         this.description = description;
@@ -31,6 +37,26 @@ public class Location {
 
     public String getDescription() {
         return description;
+    }
+
+    public Monster hasMonster(){
+        return monster;
+    }
+
+    public boolean isGetToExit(){
+        return getToExit;
+    }
+
+    public Item hasItem() {
+        return item;
+    }
+
+    public void setMonster(Monster monster){
+        this.monster = monster;
+    }
+
+    public void setItem(Item item){
+        this.item = item;
     }
 
 }

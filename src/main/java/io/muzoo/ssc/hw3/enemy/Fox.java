@@ -1,9 +1,12 @@
 package io.muzoo.ssc.hw3.enemy;
 
+import io.muzoo.ssc.hw3.Game;
+import io.muzoo.ssc.hw3.Location;
+
 public class Fox extends Monster {
 
-    public Fox(int fullHP, int currentHP, int attackPower, boolean alive) {
-        super(150, 150, 75);
+    public Fox(Game game, Location location) {
+        super(game, 200, 200, 50, location);
         monsterName = "fox";
     }
 

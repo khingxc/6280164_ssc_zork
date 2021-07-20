@@ -1,9 +1,12 @@
 package io.muzoo.ssc.hw3.enemy;
 
+import io.muzoo.ssc.hw3.Game;
+import io.muzoo.ssc.hw3.Location;
+
 public class Tiger extends Monster {
 
-    public Tiger(int fullHP, int currentHP, int attackPower) {
-        super(250, 250, 125);
+    public Tiger(Game game, Location location) {
+        super(game, 350, 350, 70, location);
         monsterName = "tiger";
     }
 

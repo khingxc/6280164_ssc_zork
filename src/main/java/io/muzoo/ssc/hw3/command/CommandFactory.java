@@ -9,15 +9,16 @@ import java.util.stream.Collectors;
 public class CommandFactory {
 
     private static final List<Class<? extends Command>> REGISTERED_COMMANDS = Arrays.asList(
-//            AttackWithCommand.class,
-//            DropCommand.class,
-            ExitCommand.class, HelpCommand.class, TakeCommand.class);
-//            GoCommand.class,
-//            HelpCommand.class,
-//            InfoCommand.class,
-//            PlayCommand.class,
-//            QuitCommand.class,
-//            TakeCommand.class);
+            AttackWithCommand.class,
+            BagCommand.class,
+            DropCommand.class,
+            ExitCommand.class,
+            GoCommand.class,
+            HelpCommand.class,
+            InfoCommand.class,
+            PlayCommand.class,
+            QuitCommand.class,
+            TakeCommand.class);
 
     private static final Map<String, Command> COMMANDS_MAP = new HashMap<>();
 

@@ -7,8 +7,6 @@ import java.util.List;
 
 public class QuitCommand implements Command {
 
-    private Game game;
-
     @Override
     public int numArgs() {
         return 0;
@@ -21,6 +19,8 @@ public class QuitCommand implements Command {
 
     @Override
     public void execute(Game game, List<String> arguments) {
-        System.out.println("hi");
+        game.getOutput().println("Back to Main Menu Page");
+        game.setStart(false);
+        game.mainMenu();
     }
 }

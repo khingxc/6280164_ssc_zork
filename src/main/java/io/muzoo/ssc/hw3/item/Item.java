@@ -1,5 +1,7 @@
 package io.muzoo.ssc.hw3.item;
 
+import java.util.HashMap;
+
 public class Item {
 
     protected String itemName;
@@ -32,6 +34,10 @@ public class Item {
 
     public int getTimeUsing(){
         return timeUsing;
+    }
+
+    public void updateTimeUsing() {
+        this.timeUsing -= 1;
     }
 
 }

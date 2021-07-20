@@ -6,9 +6,9 @@ public class Poison extends Item {
     // low possibility to get one
     // time using = 1;
 
-    public Poison(int attackPower, int addHP, int timeUsing) {
-        super(attackPower, 0, 1);
+    public Poison() {
+        super(500, 0, 1);
         itemName = "poison";
-        description = "by throwing this poison at the monster, it will die immediately.";
+        description = "by throwing this poison at the monster, you won't have to do anything much :)";
     }
 }
