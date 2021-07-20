@@ -28,11 +28,11 @@ public class InfoCommand implements Command {
 
     @Override
     public String getCommand() {
-        return "getting player's information";
+        return "info";
     }
 
     @Override
     public void execute(Game game, List<String> arguments) {
-        System.out.println("current location: " + player);
+        game.getOutput().println("current location: " + player.getCurrentLocationInLoc().getDescription());
     }
 }

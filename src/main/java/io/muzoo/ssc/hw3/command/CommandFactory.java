@@ -11,7 +11,7 @@ public class CommandFactory {
     private static final List<Class<? extends Command>> REGISTERED_COMMANDS = Arrays.asList(
 //            AttackWithCommand.class,
 //            DropCommand.class,
-            ExitCommand.class, HelpCommand.class);
+            ExitCommand.class, HelpCommand.class, TakeCommand.class);
 //            GoCommand.class,
 //            HelpCommand.class,
 //            InfoCommand.class,

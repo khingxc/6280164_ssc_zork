@@ -12,10 +12,10 @@ import java.util.Map;
 public class GoCommand implements Command {
 
     private List<String> dirs;
-    private Map<String, Room> map;
+    private Map<String, Location> map;
     private Player player;
 
-    public GoCommand(Player player, Map<String, Room> map){
+    public GoCommand(Player player, Map<String, Location> map){
         this.player = player;
         this.map = map;
         dirs = new ArrayList<>();

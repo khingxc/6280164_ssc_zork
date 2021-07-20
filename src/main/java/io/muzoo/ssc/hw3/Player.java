@@ -1,10 +1,11 @@
 package io.muzoo.ssc.hw3;
 
 import io.muzoo.ssc.hw3.item.Item;
-import io.muzoo.ssc.hw3.map.Room;
+import io.muzoo.ssc.hw3.map.Location;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Player {
 
@@ -13,6 +14,8 @@ public class Player {
     private int currentHP;
     private int hiddenHP;
     private int defaultAttackPower;
+    private Location currentLocation_loc;
+    private String currentLocation_str;
     private List<Item> bag = new ArrayList<>();
 
     public Player(){
@@ -59,6 +62,21 @@ public class Player {
     public void keepItem(Item item){
         bag.add(item);
         System.out.println(item + " is being kept to the bag");
+    }
+
+    public Location getCurrentLocationInLoc(){
+        return currentLocation_loc;
+    }
+
+    public void wasAttacked(int attackPower){
+
+        if ((currentHP - attackPower) > 0){
+            currentHP -= attackPower;
+        }
+        else{
+            currentHP = 0;
+        }
+
     }
 
     public void useItem(Item item){

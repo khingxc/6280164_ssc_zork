@@ -9,10 +9,6 @@ public class QuitCommand implements Command {
 
     private Game game;
 
-    public QuitCommand(Game game){
-        this.game = game;
-    }
-
     @Override
     public int numArgs() {
         return 0;

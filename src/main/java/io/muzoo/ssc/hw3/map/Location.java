@@ -2,17 +2,17 @@ package io.muzoo.ssc.hw3.map;
 
 import java.util.HashMap;
 
-public class Room {
+public class Location {
 
     //references from ZUUL project from third assignment from Data Structures class
 
     private final String description; //create variable called description (of each room) which cannot be override since it is 'final'
 
-    public Room(String description){
+    public Location(String description){
         this.description = description;
     }
 
-    HashMap<String,Room> directionSetting = new HashMap<String,Room>();
+    HashMap<String, Location> directionSetting = new HashMap<String, Location>();
 
     public void getDirectionSetting() {
         directionSetting.put("north",null);
@@ -21,11 +21,11 @@ public class Room {
         directionSetting.put("south",null);
     }
 
-    public Room nextRoom(String dir, Room currentRoom){
-        return currentRoom.directionSetting.get(dir);
+    public Location nextRoom(String dir, Location currentLocation){
+        return currentLocation.directionSetting.get(dir);
     }
 
-    public void setExits(String direction, Room neighbor){
+    public void setExits(String direction, Location neighbor){
         directionSetting.put(direction,neighbor);
     }
 

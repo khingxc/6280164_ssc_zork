@@ -17,7 +17,7 @@ public class Game {
         while (true) {
             Scanner in = new Scanner(System.in);
             String s = in.nextLine();
-            System.out.println(s);
+//            System.out.println(s);
             List<String> words = commandParser.parse(s);
             Command command = CommandFactory.get(words.get(0));
             if (command != null){

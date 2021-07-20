@@ -33,7 +33,7 @@ public class CommandParser {
             //TODO: checking for space
             //TODO: handle invalid number of argument
             String argString = cleanedInput.substring(cmd.length() + 1);
-            System.out.println(argString);
+//            System.out.println(argString);
             return Arrays.asList(cmd, argString);
         }
         else{
