@@ -8,16 +8,16 @@ import java.util.List;
 public class DropCommand implements Command {
     @Override
     public int numArgs() {
-        return 0;
+        return 1;
     }
 
     @Override
     public String getCommand() {
-        return null;
+        return "drop";
     }
 
     @Override
     public void execute(Game game, List<String> arguments) {
-
+        System.out.println("hi");
     }
 }

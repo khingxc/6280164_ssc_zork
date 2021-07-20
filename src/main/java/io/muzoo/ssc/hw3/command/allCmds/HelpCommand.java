@@ -22,10 +22,9 @@ public class HelpCommand implements Command {
     public void execute(Game game, List<String> arguments) {
         List<String> allCmds = CommandFactory.getAllCommands();                      //list of all commands from Command Factory
         game.getOutput().println("The followings are valid commands you can use.");  //print the head message
-
         //looping through the list and print out each command
         for (int i = 0; i < allCmds.size(); i++){
-            System.out.println(i + 1 + ") " + allCmds.indexOf(i) + '\n');
+            System.out.println("* " + allCmds.get(i));
         }
     }
 }

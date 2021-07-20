@@ -46,15 +46,15 @@ public class GoCommand implements Command {
             game.getOutput().println("sorry, there are too much arguments");
         }
 
-        else{
-
-            if (!dirs.contains(arguments)){
-                System.out.println("Direction Not Found");
-            }
-            else{
-
-            }
-        }
+//        else{
+//
+//            if (!dirs.contains(arguments)){
+//                System.out.println("Direction Not Found");
+//            }
+//            else{
+//
+//            }
+//        }
 
     }
 }

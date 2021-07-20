@@ -8,26 +8,24 @@ import java.util.List;
 
 public class Player {
 
-    private String name;
+    private String playerName;
     private int fullHP;
     private int currentHP;
     private int hiddenHP;
     private int defaultAttackPower;
-    private Room current_location_r;
-    private String current_location_s;
     private List<Item> bag = new ArrayList<>();
 
     public Player(){
-        fullHP = 777;
-        currentHP = 777;
-        hiddenHP = 77;
-        defaultAttackPower = 77;
+        fullHP = 500;
+        currentHP = 500;
+        hiddenHP = 50;
+        defaultAttackPower = 50;
     }
 
     //about player
 
-    public String getName(){
-        return name;
+    public String getPlayerName(){
+        return playerName;
     }
 
     //player stats
@@ -43,6 +41,7 @@ public class Player {
     //func to update player's HP when he/she takes potion or walks to another room
     //if walks to another room -> call addHP(hiddenHP)
     //if potion -> call addHP(potion)
+
     public void addHP(int toAddHP){
         if ((currentHP < fullHP) && ((currentHP + toAddHP) <= fullHP)){
             currentHP += toAddHP;
